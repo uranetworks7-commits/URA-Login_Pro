@@ -380,7 +380,7 @@ export function LoginForm({ onSignupClick, onLoginResult, onHackEffectToggle, ui
               {isSubmitting ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (
-                <LogIn className="mr-2 h-4 w-4" />
+                <LogIn className="mr-2 h-4 w-4 text-green-500" />
               )}
               {uiState.buttonText}
             </Button>
