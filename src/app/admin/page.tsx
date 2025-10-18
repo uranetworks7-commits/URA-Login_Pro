@@ -145,7 +145,7 @@ export default function AdminPage() {
     }
 
     const handleSiteButtonClick = () => {
-        window.open('https://ura-mannger.netlify.app', '_blank');
+        window.open('https://ura-manngerpro.netlify.app/', '_blank');
     };
 
 
@@ -293,5 +293,3 @@ export default function AdminPage() {
         </>
     );
 }
-
-    
