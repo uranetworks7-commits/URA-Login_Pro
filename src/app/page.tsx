@@ -20,8 +20,9 @@ import { EmergencyBanner } from '@/components/auth/emergency-banner';
 import { AiLoaderScreen } from '@/components/auth/ai-loader-screen';
 import { DeactivatedScreen } from '@/components/auth/deactivated-screen';
 import { LoginQueueScreen } from '@/components/auth/login-queue-screen';
+import { AppSoldScreen } from '@/components/auth/app-sold-screen';
 
-type AppState = 'permission' | 'loading' | 'auth' | 'quickLogin' | 'loggedIn' | 'banned' | 'serverError' | 'crashed' | 'deactivated' | 'inQueue';
+type AppState = 'permission' | 'loading' | 'auth' | 'quickLogin' | 'loggedIn' | 'banned' | 'serverError' | 'crashed' | 'deactivated' | 'inQueue' | 'appSold';
 type AuthMode = 'login' | 'signup';
 
 export interface LoginUIState {
@@ -213,6 +214,8 @@ export default function Home() {
         setAppState('crashed');
     } else if (result.status === 'deactivated') {
         setAppState('deactivated');
+    } else if (result.status === 'app_sold') {
+        setAppState('appSold');
     }
     else {
         setShake(true);
@@ -322,6 +325,8 @@ export default function Home() {
         return <AiLoaderScreen onRestart={() => { setAppState('loading'); }} />;
       case 'deactivated':
         return <DeactivatedScreen onReactivate={() => router.push('/reactivate')} onBackToLogin={() => setAppState('auth')} />;
+      case 'appSold':
+        return <AppSoldScreen />;
       default:
         return <LoadingScreen onComplete={handleLoadingComplete} title={loadingTitle} isEmergency={isEmergencyMode} />;
     }
@@ -345,5 +350,3 @@ export default function Home() {
     </main>
   );
 }
-
-    

@@ -1,10 +1,9 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Shield, ShieldOff, UserX, UserCheck, Edit, ExternalLink, RefreshCw } from 'lucide-react';
-import { getAllUsers, updateUserStatus, applyCustomBan } from './actions';
+import { Shield, ShieldOff, UserX, UserCheck, Edit, ExternalLink, RefreshCw, CalendarClock } from 'lucide-react';
+import { getAllUsers, updateUserStatus, applyCustomBan, updateLastLogin } from './actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -57,6 +56,7 @@ const statusMap: { [key: number]: { text: string; color: string } } = {
     5: { text: 'Banned (Temp)', color: 'bg-red-500/20 text-red-400 border-red-500/30' },
     6: { text: 'Deleted', color: 'bg-gray-500/20 text-gray-400 border-gray-500/30' },
     9: { text: 'Deactivated', color: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
+    15: { text: 'App Sold', color: 'bg-blue-500/20 text-blue-400 border-blue-500/30' },
 };
 
 
@@ -69,10 +69,12 @@ export default function AdminPage() {
     const [isCustomBanModalOpen, setIsCustomBanModalOpen] = useState(false);
     const [isChangeStatusModalOpen, setIsChangeStatusModalOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+    const [isEditLastLoginOpen, setIsEditLastLoginOpen] = useState(false);
     const [confirmAction, setConfirmAction] = useState<{ action: () => void; title: string; description: string } | null>(null);
     const [customBanHours, setCustomBanHours] = useState(1);
     const [customBanReason, setCustomBanReason] = useState('');
-    const [newStatus, setNewStatus] = useState(0);
+    const [newStatus, setNewStatus] = useState<number>(0);
+    const [newLastLogin, setNewLastLogin] = useState('');
 
     useEffect(() => {
         fetchUsers();
@@ -130,6 +132,20 @@ export default function AdminPage() {
         setIsChangeStatusModalOpen(false);
         setSelectedUser(null);
         setNewStatus(0);
+    }
+    
+    const handleUpdateLastLogin = async () => {
+        if (!selectedUser || !newLastLogin) return;
+        const result = await updateLastLogin(selectedUser.username, newLastLogin);
+        if (result.success) {
+            toast({ title: 'Success', description: result.message });
+            fetchUsers();
+        } else {
+            toast({ variant: 'destructive', title: 'Error', description: result.message });
+        }
+        setIsEditLastLoginOpen(false);
+        setSelectedUser(null);
+        setNewLastLogin('');
     }
     
     const isValidDate = (date: any) => date && !isNaN(new Date(date).getTime());
@@ -212,6 +228,7 @@ export default function AdminPage() {
                                                         <Button variant="ghost" size="icon" onClick={() => openConfirmation(user, 9, 'Deactivate User', `Are you sure you want to deactivate ${user.username}? This is for inactivity.`)} title="Deactivate"><UserX className="text-orange-500"/></Button>
                                                         <Button variant="ghost" size="icon" onClick={() => openConfirmation(user, 2, 'Activate/Unban User', `Are you sure you want to activate or unban ${user.username}?`)} title="Activate/Unban"><UserCheck className="text-green-500"/></Button>
                                                         <Button variant="ghost" size="icon" onClick={() => { setSelectedUser(user); setNewStatus(user.status); setIsChangeStatusModalOpen(true); }} title="Edit Status"><Edit className="text-blue-400"/></Button>
+                                                        <Button variant="ghost" size="icon" onClick={() => { setSelectedUser(user); setNewLastLogin(user.lastLoginAt || ''); setIsEditLastLoginOpen(true); }} title="Edit Last Login"><CalendarClock className="text-purple-400"/></Button>
                                                     </TableCell>
                                                 </TableRow>
                                             );
@@ -287,6 +304,26 @@ export default function AdminPage() {
                  <DialogFooter>
                     <Button variant="outline" onClick={() => setIsChangeStatusModalOpen(false)}>Cancel</Button>
                     <Button onClick={handleChangeStatus}>Update Status</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+        
+        {/* Edit Last Login Modal */}
+        <Dialog open={isEditLastLoginOpen} onOpenChange={setIsEditLastLoginOpen}>
+            <DialogContent className="bg-black/80 text-white border-primary/30">
+                <DialogHeader>
+                    <DialogTitle>Edit Last Login for {selectedUser?.username}</DialogTitle>
+                    <DialogDescription>Set a new last login date. Use format: YYYY-MM-DDTHH:mm:ss.sssZ</DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="last-login" className="text-right">Last Login</Label>
+                        <Input id="last-login" type="text" value={newLastLogin} onChange={(e) => setNewLastLogin(e.target.value)} placeholder={new Date().toISOString()} className="col-span-3 bg-black/30 border-white/20"/>
+                    </div>
+                </div>
+                 <DialogFooter>
+                    <Button variant="outline" onClick={() => setIsEditLastLoginOpen(false)}>Cancel</Button>
+                    <Button onClick={handleUpdateLastLogin}>Update Last Login</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

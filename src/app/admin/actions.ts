@@ -73,3 +73,18 @@ export async function applyCustomBan(username: string, durationHours: number, re
         return { success: false, message: error.message };
     }
 }
+
+export async function updateLastLogin(username: string, newDate: string): Promise<{ success: boolean; message: string }> {
+    const userRef = ref(db, `users/${username.toLowerCase()}`);
+    try {
+        if (!newDate || isNaN(new Date(newDate).getTime())) {
+            return { success: false, message: 'Invalid date format provided.' };
+        }
+        await update(userRef, { 
+            lastLoginAt: new Date(newDate).toISOString()
+        });
+        return { success: true, message: `User ${username}'s last login has been updated.` };
+    } catch (error: any) {
+        return { success: false, message: error.message };
+    }
+}

@@ -37,7 +37,7 @@ export interface BannedDetails {
 export interface LoginResult {
     success: boolean;
     message: string;
-    status?: 'approved' | 'pending' | 'banned' | 'deleted' | 'error' | 'not_found' | 'invalid_credentials' | 'crashed' | 'deactivated' | 'in_queue';
+    status?: 'approved' | 'pending' | 'banned' | 'deleted' | 'error' | 'not_found' | 'invalid_credentials' | 'crashed' | 'deactivated' | 'in_queue' | 'app_sold';
     data?: UserData | BannedDetails;
 }
 
@@ -185,6 +185,9 @@ export async function loginUser(credentials: UserData): Promise<LoginResult> {
 
         case 10:
              return { success: false, message: 'Login in queue.', status: 'in_queue', data: { username, email } };
+        
+        case 15:
+            return { success: false, message: 'This app has been sold.', status: 'app_sold' };
 
         default:
             return { success: false, message: 'Unknown account status. Please contact support.', status: 'error' };
@@ -284,5 +287,3 @@ export async function finalizeQueuedLogin(user: UserData): Promise<LoginResult> 
         return { success: false, message: 'Failed to finalize login.', status: 'error' };
     }
 }
-
-    
