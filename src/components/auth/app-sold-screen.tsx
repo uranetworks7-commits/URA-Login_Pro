@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -6,24 +7,24 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 
 const CreditLine = ({ text, delay }: { text: string; delay: number }) => (
-    <p className="animate-credit-scroll" style={{ animationDelay: `${delay}s`, animationDuration: '30s' }}>
+    <div className="animate-credit-scroll" style={{ animationDelay: `${delay}s`, animationDuration: '40s' }}>
         {text}
-    </p>
+    </div>
 );
 
 export function AppSoldScreen() {
     const [showCredits, setShowCredits] = useState(false);
 
     const credits = [
-        { text: "URA Networks", delay: 0 },
-        { text: "Yash Singh (Owner)", delay: 4 },
-        { text: "VLF Tec (Raj Singh) Partner", delay: 8 },
-        { text: "Utkarsh Kr Singh", delay: 12 },
-        { text: "Desinger:- Ankit", delay: 16 },
-        { text: "PR Team :- Aman Sharma", delay: 20 },
-        { text: "TGL:- Unknown", delay: 24 },
-        { text: "The End", delay: 28 },
-        { text: "URA Network", delay: 32 }
+        { text: "URA Networks", delay: 2 },
+        { text: "Yash Singh (Owner)", delay: 6 },
+        { text: "VLF Tec (Raj Singh) Partner", delay: 10 },
+        { text: "Utkarsh Kr Singh", delay: 14 },
+        { text: "Desinger:- Ankit", delay: 18 },
+        { text: "PR Team :- Aman Sharma", delay: 22 },
+        { text: "TGL:- Unknown", delay: 26 },
+        { text: "The End", delay: 30 },
+        { text: "URA Network", delay: 34 }
     ];
 
     return (
@@ -52,11 +53,11 @@ export function AppSoldScreen() {
                             <DialogHeader>
                                 <DialogTitle className="text-primary text-2xl">A Message for Our Legends</DialogTitle>
                             </DialogHeader>
-                            <DialogDescription className="text-white/80 text-lg space-y-4 py-4">
+                            <div className="text-white/80 text-lg space-y-4 py-4">
                                <p>To our valued URA Legends, this application has been acquired by Alpha Prime.</p>
                                <p>We've had an incredible journey with you. We may lease the app for special events like giveaways, so be sure to check back occasionally.</p>
                                <p className="font-bold text-primary">Thank you, and goodbye.</p>
-                            </DialogDescription>
+                            </div>
                             <DialogFooter>
                                 <DialogClose asChild>
                                     <Button type="button" variant="secondary" onClick={() => setShowCredits(true)}>
@@ -69,10 +70,12 @@ export function AppSoldScreen() {
                 </div>
             ) : (
                 <div className="fixed inset-0 flex items-center justify-center bg-black">
-                    <div className="relative w-full h-full overflow-hidden">
-                        {credits.map((credit, index) => (
-                            <CreditLine key={index} text={credit.text} delay={credit.delay} />
-                        ))}
+                    <div className="relative w-full h-full overflow-hidden [perspective:400px]">
+                        <div className="absolute w-full h-full animate-credit-scroll-container">
+                             {credits.map((credit, index) => (
+                                <CreditLine key={index} text={credit.text} delay={credit.delay} />
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
@@ -82,12 +85,30 @@ export function AppSoldScreen() {
                 <div id="stars2"></div>
                 <div id="stars3"></div>
             </div>
-             <style jsx global>{`
-                @keyframes credit-scroll {
-                    0% { transform: translateY(100vh); opacity: 0; }
-                    5% { opacity: 1; }
-                    95% { opacity: 1; }
-                    100% { transform: translateY(-100vh); opacity: 0; }
+            <style jsx global>{`
+                @keyframes animStar { from { transform: translateY(0px); } to { transform: translateY(-2000px); } }
+                #stars, #stars2, #stars3 {
+                    position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; display: block;
+                }
+                #stars {
+                    background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
+                    z-index: 0; animation: animStar 50s linear infinite;
+                }
+                #stars2 {
+                    background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
+                    z-index: 1; animation: animStar 100s linear infinite;
+                }
+                #stars3 {
+                    background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
+                    z-index: 2; animation: animStar 150s linear infinite;
+                }
+                @keyframes credit-scroll-container {
+                    from { transform: translateY(100vh); }
+                    to { transform: translateY(-100vh); }
+                }
+                .animate-credit-scroll-container {
+                    animation: credit-scroll-container 40s linear 2s infinite;
+                    transform-style: preserve-3d;
                 }
                 .animate-credit-scroll {
                     position: absolute;
@@ -95,38 +116,15 @@ export function AppSoldScreen() {
                     width: 100%;
                     text-align: center;
                     color: #e0e0e0;
-                    font-size: 2rem;
+                    font-size: 2.5rem;
                     text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
-                    animation-name: credit-scroll;
-                    animation-timing-function: linear;
-                    animation-iteration-count: infinite;
                     opacity: 0;
+                    animation: credit-line-fade 40s linear infinite;
                 }
-                @keyframes animStar { from { transform: translateY(0px); } to { transform: translateY(-2000px); } }
-                #stars, #stars2, #stars3 {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    width: 100%;
-                    height: 100%;
-                    display: block;
-                }
-                #stars {
-                    background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
-                    z-index: 0;
-                    animation: animStar 50s linear infinite;
-                }
-                #stars2 {
-                    background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
-                    z-index: 1;
-                    animation: animStar 100s linear infinite;
-                }
-                #stars3 {
-                    background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
-                    z-index: 2;
-                    animation: animStar 150s linear infinite;
+                 @keyframes credit-line-fade {
+                    0%, 10% { opacity: 0; }
+                    11%, 89% { opacity: 1; }
+                    90%, 100% { opacity: 0; }
                 }
             `}</style>
         </div>
