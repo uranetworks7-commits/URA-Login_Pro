@@ -15,15 +15,15 @@ export function AppSoldScreen() {
     const [showCredits, setShowCredits] = useState(false);
 
     const credits = [
-        { text: "URA Networks", delay: 2 },
-        { text: "Yash Singh (Owner)", delay: 6 },
-        { text: "VLF Tec (Raj Singh) Partner", delay: 10 },
-        { text: "Utkarsh Kr Singh", delay: 14 },
-        { text: "Desinger:- Ankit", delay: 18 },
-        { text: "PR Team :- Aman Sharma", delay: 22 },
-        { text: "TGL:- Unknown", delay: 26 },
-        { text: "The End", delay: 32 },
-        { text: "URA Network", delay: 36 }
+        { text: "URA Networks", delay: 1 },
+        { text: "Yash Singh (Owner)", delay: 3 },
+        { text: "VLF Tec (Raj Singh) Partner", delay: 5 },
+        { text: "Utkarsh Kr Singh", delay: 7 },
+        { text: "Desinger:- Ankit", delay: 9 },
+        { text: "PR Team :- Aman Sharma", delay: 11 },
+        { text: "TGL:- Unknown", delay: 13 },
+        { text: "The End", delay: 16 },
+        { text: "URA Network", delay: 18 }
     ];
 
     return (
@@ -31,15 +31,15 @@ export function AppSoldScreen() {
         <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-black text-white overflow-hidden">
             {!showCredits ? (
                 <div className="w-full max-w-2xl bg-black/50 border border-yellow-400/50 rounded-2xl shadow-2xl shadow-yellow-400/20 backdrop-blur-md p-8 text-center space-y-6 z-10">
-                    <h1 className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-4">
-                        <BadgeDollarSign className="h-10 w-10" />
+                    <h1 className="text-2xl font-bold text-yellow-400 flex items-center justify-center gap-3">
+                        <BadgeDollarSign className="h-7 w-7" />
                         Acquisition Notice
                     </h1>
                     
                     <div className="text-left bg-white/5 p-4 rounded-lg border border-white/10 space-y-3">
-                        <p className="flex items-center gap-3 text-base"><HandCoins className="h-5 w-5 text-yellow-400"/> Sale Price: <span className="font-bold text-lg text-white">1006 USD</span> (Approx. 88,830 INR)</p>
-                        <p className="flex items-center gap-3 text-base"><Building className="h-5 w-5 text-yellow-400"/> Former Proprietors: <span className="font-bold text-white">URA Prt Ltd, VLF TeC, TGL, PR-Team</span></p>
-                        <p className="flex items-center gap-3 text-base"><Rocket className="h-5 w-5 text-yellow-400"/>Current Owner: <span className="font-bold text-white">Alpha Prime Kanpur Pvt. Ltd.</span></p>
+                        <p className="flex items-center gap-3 text-sm"><HandCoins className="h-5 w-5 text-yellow-400"/> Sale Price: <span className="font-bold text-base text-white">1006 USD</span> (Approx. 88,830 INR)</p>
+                        <p className="flex items-center gap-3 text-sm"><Building className="h-5 w-5 text-yellow-400"/> Former Proprietors: <span className="font-bold text-white">URA Prt Ltd, VLF TeC, TGL, PR-Team</span></p>
+                        <p className="flex items-center gap-3 text-sm"><Rocket className="h-5 w-5 text-yellow-400"/>Current Owner: <span className="font-bold text-white">Alpha Prime Kanpur Pvt. Ltd.</span></p>
                     </div>
 
                     <Dialog>
@@ -69,8 +69,8 @@ export function AppSoldScreen() {
                 </div>
             ) : (
                 <div className="fixed inset-0 flex items-center justify-center bg-black">
-                    <div className="relative w-full h-full overflow-hidden [perspective:300px]">
-                        <div className="absolute w-full h-full" style={{ transform: 'rotateX(25deg)' }}>
+                    <div className="relative w-full h-full overflow-hidden [perspective:400px]">
+                        <div className="absolute w-full h-full animate-scroll-container" style={{ transform: 'rotateX(25deg)' }}>
                              {credits.map((credit, index) => (
                                 <CreditLine key={index} text={credit.text} delay={credit.delay} />
                             ))}
@@ -108,7 +108,7 @@ export function AppSoldScreen() {
                         opacity: 1;
                     }
                     to {
-                        top: -50%;
+                        top: -100%;
                         opacity: 1;
                     }
                 }
@@ -118,11 +118,12 @@ export function AppSoldScreen() {
                     width: 100%;
                     text-align: center;
                     color: #e0e0e0;
-                    font-size: 2rem;
+                    font-size: 1.75rem; /* Reduced font size */
                     text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
                     opacity: 0;
                     top: 100%;
-                    animation: scroll-up 40s linear infinite;
+                    animation: scroll-up 25s linear infinite; /* Faster scroll */
+                    animation-fill-mode: forwards;
                 }
             `}</style>
         </div>
