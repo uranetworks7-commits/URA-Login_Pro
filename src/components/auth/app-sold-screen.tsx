@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { BadgeDollarSign, Building, Rocket, Info, HandCoins } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger, DialogClose } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 
 const CreditLine = ({ text, delay }: { text: string; delay: number }) => (
     <div className="credit-line" style={{ animationDelay: `${delay}s` }}>
@@ -31,13 +31,13 @@ export function AppSoldScreen() {
         <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-black text-white overflow-hidden">
             {!showCredits ? (
                 <div className="w-full max-w-2xl bg-black/50 border border-yellow-400/50 rounded-2xl shadow-2xl shadow-yellow-400/20 backdrop-blur-md p-8 text-center space-y-6 z-10">
-                    <h1 className="text-2xl font-bold text-yellow-400 flex items-center justify-center gap-3">
-                        <BadgeDollarSign className="h-7 w-7" />
+                    <h1 className="text-xl font-bold text-yellow-400 flex items-center justify-center gap-3">
+                        <BadgeDollarSign className="h-6 w-6" />
                         Acquisition Notice
                     </h1>
                     
                     <div className="text-left bg-white/5 p-4 rounded-lg border border-white/10 space-y-3">
-                        <p className="flex items-center gap-3 text-sm"><HandCoins className="h-5 w-5 text-yellow-400"/> Sale Price: <span className="font-bold text-base text-white">1006 USD</span> (Approx. 88,830 INR)</p>
+                        <p className="flex items-center gap-3 text-sm"><HandCoins className="h-5 w-5 text-yellow-400"/> Sale Price: <span className="font-bold text-white">1006 USD</span> (Approx. 88,830 INR)</p>
                         <p className="flex items-center gap-3 text-sm"><Building className="h-5 w-5 text-yellow-400"/> Former Proprietors: <span className="font-bold text-white">URA Prt Ltd, VLF TeC, TGL, PR-Team</span></p>
                         <p className="flex items-center gap-3 text-sm"><Rocket className="h-5 w-5 text-yellow-400"/>Current Owner: <span className="font-bold text-white">Alpha Prime Kanpur Pvt. Ltd.</span></p>
                     </div>
@@ -112,17 +112,21 @@ export function AppSoldScreen() {
                         opacity: 1;
                     }
                 }
-
                 .credit-line {
                     position: absolute;
                     width: 100%;
                     text-align: center;
-                    color: #e0e0e0;
-                    font-size: 1.75rem; /* Reduced font size */
-                    text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: #4ade80; /* Green text */
+                    text-shadow: 
+                        0 0 8px #fde047, /* Golden glow */
+                        0 0 10px #fde047,
+                        1px 1px 2px black, /* Border effect */
+                        -1px -1px 2px black;
                     opacity: 0;
                     top: 100%;
-                    animation: scroll-up 25s linear infinite; /* Faster scroll */
+                    animation: scroll-up 20s linear infinite;
                     animation-fill-mode: forwards;
                 }
             `}</style>
