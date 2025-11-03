@@ -18,25 +18,25 @@ export function AppSoldScreen() {
 
     const credits = [
         { text: "URA Networks", delay: 1 },
-        { text: "Yash Singh (Owner)", delay: 3 },
-        { text: "VLF Tec (Raj Singh) Partner", delay: 5 },
-        { text: "Utkarsh Kr Singh", delay: 7 },
-        { text: "Ankit (Designer)", delay: 9 },
-        { text: "Aman Sharma (PR Team)", delay: 11 },
-        { text: "AKASH (PRT)", delay: 13 },
-        { text: "VIVEK (URA)", delay: 15 },
-        { text: "Rahul (Developer)", delay: 17 },
-        { text: "TGL (Ravi)", delay: 19 },
-        { text: "Shivam (TGL)", delay: 21 },
-        { text: "TGL Official", delay: 23 },
-        { text: "TGL-Unkown", delay: 25 },
-        { text: "Suraj:-;TGL", delay: 27 },
-        { text: "TGL-Production and Design Limited", delay: 29 },
-        { text: "Server Team -Raj Patel", delay: 31 },
-        { text: "Sponcer , Eren Yeager , Ayush, Harsh", delay: 33 },
-        { text: "URA Network Private Ltd", delay: 35 },
-        { text: "Powered By SV-10 PRO", delay: 37 },
-        { text: "The End", delay: 40 }
+        { text: "Yash Singh (Owner)", delay: 4 },
+        { text: "VLF Tec (Raj Singh) Partner", delay: 7 },
+        { text: "Utkarsh Kr Singh", delay: 10 },
+        { text: "Ankit (Designer)", delay: 13 },
+        { text: "Aman Sharma (PR Team)", delay: 16 },
+        { text: "AKASH (PRT)", delay: 19 },
+        { text: "VIVEK (URA)", delay: 22 },
+        { text: "Rahul (Developer)", delay: 25 },
+        { text: "TGL (Ravi)", delay: 28 },
+        { text: "Shivam (TGL)", delay: 31 },
+        { text: "TGL Official", delay: 34 },
+        { text: "TGL-Unkown", delay: 37 },
+        { text: "Suraj:-;TGL", delay: 40 },
+        { text: "TGL-Production and Design Limited", delay: 43 },
+        { text: "Server Team -Raj Patel", delay: 46 },
+        { text: "Sponcer , Eren Yeager , Ayush, Harsh", delay: 49 },
+        { text: "URA Network Private Ltd", delay: 52 },
+        { text: "Powered By SV-10 PRO", delay: 55 },
+        { text: "The End", delay: 58 }
     ];
     
     useEffect(() => {
@@ -150,7 +150,7 @@ export function AppSoldScreen() {
                     position: absolute;
                     width: 100%;
                     text-align: center;
-                    font-size: 2.5rem;
+                    font-size: 1.8rem;
                     font-weight: bold;
                     color: #fff; /* White text color */
                     text-shadow: 
@@ -160,7 +160,7 @@ export function AppSoldScreen() {
                          1px  1px 0 #fde047, /* Golden border */
                          0 0 5px #fde047; /* Golden glow */
                     opacity: 0;
-                    animation: scroll-up 45s linear infinite;
+                    animation: scroll-up 60s linear infinite;
                     animation-fill-mode: forwards;
                 }
             `}</style>
