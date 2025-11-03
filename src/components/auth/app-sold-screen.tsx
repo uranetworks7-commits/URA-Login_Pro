@@ -147,12 +147,11 @@ export function AppSoldScreen() {
                     text-align: center;
                     font-size: 1.5rem;
                     font-weight: bold;
-                    color: #4ade80; /* Green text */
+                    color: #fde047; /* Golden Color */
                     text-shadow: 
-                        0 0 8px #fde047, /* Golden glow */
+                        0 0 5px #fde047,
                         0 0 10px #fde047,
-                        1px 1px 2px black, /* Border effect */
-                        -1px -1px 2px black;
+                        0 0 15px #fde047;
                     opacity: 0;
                     top: 100%;
                     animation: scroll-up 35s linear infinite;
