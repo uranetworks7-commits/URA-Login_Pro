@@ -29,9 +29,14 @@ export function AppSoldScreen() {
         { text: "TGL (Ravi)", delay: 19 },
         { text: "Shivam (TGL)", delay: 21 },
         { text: "TGL Official", delay: 23 },
-        { text: "URA Network Private Ltd", delay: 25 },
-        { text: "Powered By SV-10 PRO", delay: 27 },
-        { text: "The End", delay: 30 }
+        { text: "TGL-Unkown", delay: 25 },
+        { text: "Suraj:-;TGL", delay: 27 },
+        { text: "TGL-Production and Design Limited", delay: 29 },
+        { text: "Server Team -Raj Patel", delay: 31 },
+        { text: "Sponcer , Eren Yeager , Ayush, Harsh", delay: 33 },
+        { text: "URA Network Private Ltd", delay: 35 },
+        { text: "Powered By SV-10 PRO", delay: 37 },
+        { text: "The End", delay: 40 }
     ];
     
     useEffect(() => {
@@ -155,7 +160,7 @@ export function AppSoldScreen() {
                          1px  1px 0 #fde047, /* Golden border */
                          0 0 5px #fde047; /* Golden glow */
                     opacity: 0;
-                    animation: scroll-up 35s linear infinite;
+                    animation: scroll-up 45s linear infinite;
                     animation-fill-mode: forwards;
                 }
             `}</style>
