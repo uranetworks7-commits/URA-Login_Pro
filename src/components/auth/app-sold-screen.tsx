@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { BadgeDollarSign, Building, Rocket, Info, HandCoins, Film } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger, DialogClose } from '@/components/ui/dialog';
@@ -42,9 +43,19 @@ export function AppSoldScreen() {
     return (
         <>
         <audio ref={audioRef} src="https://files.catbox.moe/gp1sku.mp3" loop />
-        <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-white text-black overflow-hidden">
+        <div className="flex min-h-screen flex-col items-center justify-center p-4 text-white overflow-hidden">
+             {!showCredits && (
+                <Image
+                    src="https://files.catbox.moe/mgkevf.jpg"
+                    alt="Background"
+                    layout="fill"
+                    objectFit="cover"
+                    quality={100}
+                    className="z-0"
+                />
+            )}
             {!showCredits ? (
-                <div className="w-full max-w-2xl bg-white/50 border border-yellow-400/50 rounded-2xl shadow-2xl shadow-yellow-400/20 backdrop-blur-md p-8 text-center space-y-6 z-10 relative">
+                <div className="w-full max-w-2xl bg-black/50 border border-yellow-400/50 rounded-2xl shadow-2xl shadow-yellow-400/20 backdrop-blur-md p-8 text-center space-y-6 z-10 relative">
                     <Dialog>
                         <DialogTrigger asChild>
                             <Button variant="ghost" size="icon" className="absolute top-4 left-4 bg-yellow-400/10 border-yellow-400/50 text-yellow-500 hover:bg-yellow-400/20 hover:text-yellow-400">
@@ -73,10 +84,10 @@ export function AppSoldScreen() {
                         This App was Sold
                     </h1>
                     
-                    <div className="text-left bg-black/5 p-4 rounded-lg border border-black/10 space-y-3">
-                        <p className="flex items-center gap-3 text-sm"><HandCoins className="h-5 w-5 text-yellow-500"/> Sale Price: <span className="font-bold text-black">1006 USD</span> (Approx. 88,830 INR)</p>
-                        <p className="flex items-center gap-3 text-sm"><Building className="h-5 w-5 text-yellow-500"/> Former Proprietors: <span className="font-bold text-black">URA Prt Ltd, VLF TeC, TGL, PR-Team</span></p>
-                        <p className="flex items-center gap-3 text-sm"><Rocket className="h-5 w-5 text-yellow-500"/>Current Owner: <span className="font-bold text-black">Alpha Prime Kanpur Pvt. Ltd.</span></p>
+                    <div className="text-left bg-black/5 p-4 rounded-lg border border-white/10 space-y-3">
+                        <p className="flex items-center gap-3 text-sm"><HandCoins className="h-5 w-5 text-yellow-500"/> Sale Price: <span className="font-bold text-white">1006 USD</span> (Approx. 88,830 INR)</p>
+                        <p className="flex items-center gap-3 text-sm"><Building className="h-5 w-5 text-yellow-500"/> Former Proprietors: <span className="font-bold text-white">URA Prt Ltd, VLF TeC, TGL, PR-Team</span></p>
+                        <p className="flex items-center gap-3 text-sm"><Rocket className="h-5 w-5 text-yellow-500"/>Current Owner: <span className="font-bold text-white">Alpha Prime Kanpur Pvt. Ltd.</span></p>
                     </div>
 
                     <Button variant="outline" onClick={() => setShowCredits(true)} className="bg-transparent border-yellow-500/50 text-yellow-600 hover:bg-yellow-400/20 hover:text-yellow-500">
