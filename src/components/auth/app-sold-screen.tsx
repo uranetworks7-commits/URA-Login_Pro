@@ -147,13 +147,14 @@ export function AppSoldScreen() {
                     text-align: center;
                     font-size: 2.5rem;
                     font-weight: bold;
-                    color: #fde047; /* Golden Color */
+                    color: #fff; /* White text color */
                     text-shadow: 
-                        0 0 5px #fde047,
-                        0 0 10px #fde047,
-                        0 0 15px #fde047;
+                        -1px -1px 0 #fde047,  
+                         1px -1px 0 #fde047,
+                        -1px  1px 0 #fde047,
+                         1px  1px 0 #fde047, /* Golden border */
+                         0 0 5px #fde047; /* Golden glow */
                     opacity: 0;
-                    top: 100%;
                     animation: scroll-up 35s linear infinite;
                     animation-fill-mode: forwards;
                 }
