@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { BadgeDollarSign, Building, Rocket, Info, HandCoins } from 'lucide-react';
+import { BadgeDollarSign, Building, Rocket, Info, HandCoins, Film } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 
@@ -44,22 +44,11 @@ export function AppSoldScreen() {
         <audio ref={audioRef} src="https://files.catbox.moe/gp1sku.mp3" loop />
         <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-black text-white overflow-hidden">
             {!showCredits ? (
-                <div className="w-full max-w-2xl bg-black/50 border border-yellow-400/50 rounded-2xl shadow-2xl shadow-yellow-400/20 backdrop-blur-md p-8 text-center space-y-6 z-10">
-                    <h1 className="text-xl font-bold text-yellow-400 flex items-center justify-center gap-3">
-                        <BadgeDollarSign className="h-6 w-6" />
-                        This App was Sold
-                    </h1>
-                    
-                    <div className="text-left bg-white/5 p-4 rounded-lg border border-white/10 space-y-3">
-                        <p className="flex items-center gap-3 text-sm"><HandCoins className="h-5 w-5 text-yellow-400"/> Sale Price: <span className="font-bold text-white">1006 USD</span> (Approx. 88,830 INR)</p>
-                        <p className="flex items-center gap-3 text-sm"><Building className="h-5 w-5 text-yellow-400"/> Former Proprietors: <span className="font-bold text-white">URA Prt Ltd, VLF TeC, TGL, PR-Team</span></p>
-                        <p className="flex items-center gap-3 text-sm"><Rocket className="h-5 w-5 text-yellow-400"/>Current Owner: <span className="font-bold text-white">Alpha Prime Kanpur Pvt. Ltd.</span></p>
-                    </div>
-
+                <div className="w-full max-w-2xl bg-black/50 border border-yellow-400/50 rounded-2xl shadow-2xl shadow-yellow-400/20 backdrop-blur-md p-8 text-center space-y-6 z-10 relative">
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button variant="outline" className="bg-yellow-400/10 border-yellow-400/50 text-yellow-300 hover:bg-yellow-400/20 hover:text-yellow-200">
-                                <Info className="mr-2 h-4 w-4" /> More Info
+                            <Button variant="ghost" size="icon" className="absolute top-4 left-4 bg-yellow-400/10 border-yellow-400/50 text-yellow-300 hover:bg-yellow-400/20 hover:text-yellow-200">
+                                <Info className="h-5 w-5" />
                             </Button>
                         </DialogTrigger>
                         <DialogContent className="bg-black/80 text-white border-primary/30">
@@ -73,13 +62,26 @@ export function AppSoldScreen() {
                             </div>
                             <DialogFooter>
                                 <DialogClose asChild>
-                                    <Button type="button" variant="secondary" onClick={() => setShowCredits(true)}>
-                                        Watch Credits
-                                    </Button>
+                                    <Button type="button" variant="secondary">Close</Button>
                                 </DialogClose>
                             </DialogFooter>
                         </DialogContent>
                     </Dialog>
+
+                    <h1 className="text-xl font-bold text-yellow-400 flex items-center justify-center gap-3">
+                        <BadgeDollarSign className="h-6 w-6" />
+                        This App was Sold
+                    </h1>
+                    
+                    <div className="text-left bg-white/5 p-4 rounded-lg border border-white/10 space-y-3">
+                        <p className="flex items-center gap-3 text-sm"><HandCoins className="h-5 w-5 text-yellow-400"/> Sale Price: <span className="font-bold text-white">1006 USD</span> (Approx. 88,830 INR)</p>
+                        <p className="flex items-center gap-3 text-sm"><Building className="h-5 w-5 text-yellow-400"/> Former Proprietors: <span className="font-bold text-white">URA Prt Ltd, VLF TeC, TGL, PR-Team</span></p>
+                        <p className="flex items-center gap-3 text-sm"><Rocket className="h-5 w-5 text-yellow-400"/>Current Owner: <span className="font-bold text-white">Alpha Prime Kanpur Pvt. Ltd.</span></p>
+                    </div>
+
+                    <Button variant="outline" onClick={() => setShowCredits(true)} className="bg-transparent border-yellow-400/50 text-yellow-300 hover:bg-yellow-400/20 hover:text-yellow-200">
+                        <Film className="mr-2 h-4 w-4" /> Watch Credits
+                    </Button>
                 </div>
             ) : (
                 <div className="fixed inset-0 flex items-center justify-center bg-black">
