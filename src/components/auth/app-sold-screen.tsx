@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { BadgeDollarSign, Building, Rocket, Info, HandCoins, Film } from 'lucide-react';
+import { BadgeDollarSign, Building, Rocket, MessageSquare, HandCoins, Film } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 
@@ -59,7 +59,7 @@ export function AppSoldScreen() {
                     <Dialog>
                         <DialogTrigger asChild>
                             <Button variant="ghost" size="icon" className="absolute top-4 left-4 bg-yellow-400/10 border-yellow-400/50 text-yellow-500 hover:bg-yellow-400/20 hover:text-yellow-400">
-                                <Info className="h-5 w-5" />
+                                <MessageSquare className="h-5 w-5" />
                             </Button>
                         </DialogTrigger>
                         <DialogContent className="bg-black/80 text-white border-primary/30">
@@ -145,7 +145,7 @@ export function AppSoldScreen() {
                     position: absolute;
                     width: 100%;
                     text-align: center;
-                    font-size: 1.5rem;
+                    font-size: 2.5rem;
                     font-weight: bold;
                     color: #fde047; /* Golden Color */
                     text-shadow: 
